@@ -32,9 +32,25 @@ Vue.use(hAuth, {configuration : authConfig});
 ```
 
     Add to your App.vue: 
+
+##
+    Inside <template> tag:    
+    
 ```html
     <h-callback redirectTo="/"></h-callback>
-```    
+```
+
+## 
+    Insite <script> tag:    
+```javascript
+    import hCallback from "vue-auth0-handler/Callback.vue";
+    export default {
+        ...
+        components: {
+            hCallback
+        }
+    }
+```
 
 ### Options
 
