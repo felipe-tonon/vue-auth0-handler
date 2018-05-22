@@ -15,7 +15,7 @@ Handles login/logout and authentication callback from Auth0 in Vue2
 
 #### Configuration   
    
-```
+```javascript
 
 // define the configuration:
 const authConfig = {
@@ -23,26 +23,31 @@ const authConfig = {
   domain: '[your-auth0-domain].auth0.com',
   callbackUris: {
     'development': 'http://development.your-application-url.com',
-    'production': http://your-application-url.com'
+    'production': 'http://your-application-url.com'
   }
 }
 
 // initiate as a Vue plugin:
 Vue.use(hAuth, {configuration : authConfig});
-
-// add to your App.vue
-<h-callback redirectTo="/"></h-callback>
-
 ```
+
+    Add to your App.vue: 
+```html
+    <h-callback redirectTo="/"></h-callback>
+```    
 
 ### Options
 
-Once a successful login happens, you can have your hCallback component to perform a redirection OR to fire and event. 
-```
-    // redirecting:
+Once a successful login happens, you can have your hCallback component to perform a redirection *OR* to fire and event.
+##
+Redirecting: 
+```html
+    
     <h-callback redirectTo="your_after-login_page/"></h-callback>
 ```
-```
+##
+Firing an event:
+```html
     // firing an event:
     <h-callback loginEventName="logged_in" v-on:logged_in="testLoginEvent"></h-callback>
 ```
