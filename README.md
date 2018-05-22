@@ -55,27 +55,27 @@ Firing an event:
 ### $hAuth api methods
 
 #### login()
-```
+```javascript
     // redirects to Auth0's login page
     this.$hAuth.login();
 ```
 #### logout()
-```    
+```javascript
     // clears any authentication information 
     this.$hAuth.logout();
 ```
 #### isAuthenticated()
-```
+```javascript
     // returns a Boolean
     this.$hAuth.isAuthenticated()
 ```
 #### getToken()
-```    
+```javascript
     // returns JWT token
     this.$hAuth.getToken();
 ```
 #### getUserProfile()
-```    
+```javascript
     this.$hAuth.getUserProfile();
     // returns the User's info in JSON with the following format:
       {
