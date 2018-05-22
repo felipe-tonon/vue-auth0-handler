@@ -7,6 +7,12 @@ Handles login/logout and authentication callback from Auth0 in Vue2
     
     You need your Auth0 configuration from http://auth0.com
 
+#### Installation
+
+```
+    > npm i vue-auth0-handler
+``` 
+
 #### Configuration   
    
 ```
