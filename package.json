@@ -1,6 +1,6 @@
 {
   "name": "vue-auth0-handler",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Vue2 Component to handle login/logout and authentication callbacks from Auth0",
   "main": "src/Auth.js",
   "scripts": {
