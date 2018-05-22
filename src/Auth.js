@@ -1,7 +1,6 @@
 import auth0 from 'auth0-js'
 
 import hAuthStorage from './AuthStorage'
-import hCallback from '../Callback.vue'
 
 export default {
   name: 'hAuth',
@@ -19,22 +18,26 @@ export default {
   },
   install(Vue, setup) {
     this.auth0Config = setup.configuration;
-    console.log('install', this.auth0Config);
     this.auth0.webAuth = this.getNewWebAuth();
     Vue.prototype.$hAuth = this;
     Vue.hAuth = this;
-    Vue.use(hCallback);
-    console.log('install2', this.auth0.webAuth);
   },
   getNewWebAuth() {
+    let environment = this.getEnvironment();
     return new auth0.WebAuth({
       domain: this.auth0Config.domain,
       clientID: this.auth0Config.clientId,
-      redirectUri: this.auth0Config.callbackUris['development'],
+      redirectUri: this.auth0Config.callbackUris[environment],
       audience: `https://${this.auth0Config.domain}/userinfo`,
       responseType: 'token id_token',
       scope: 'openid email profile'
     })
+  },
+  getEnvironment() {
+    if (process.env && process.env.NODE_ENV) {
+      return process.env.NODE_ENV;
+    }
+    return 'development';
   },
   getWebAuth() {
     if (this.auth0.webAuth) {
