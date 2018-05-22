@@ -31,9 +31,9 @@ const authConfig = {
 Vue.use(hAuth, {configuration : authConfig});
 ```
 
-    Add to your App.vue: 
+#####    Add to your App.vue: 
 
-##
+
     Inside <template> tag:    
     
 ```html
@@ -54,7 +54,7 @@ Vue.use(hAuth, {configuration : authConfig});
 
 ### Options
 
-Once a successful login happens, you can have your hCallback component to perform a redirection *OR* to fire and event.
+Once a successful login happens, you can have your hCallback component to perform a redirection *OR* to fire an event.
 ##
 Redirecting: 
 ```html
@@ -94,7 +94,7 @@ Firing an event:
 ```javascript
     this.$hAuth.getUserProfile();
     // returns the User's info in JSON with the following format:
-      {
+    let returnsFormat = {
            email: '',
            name: '',
            nickname: '',
