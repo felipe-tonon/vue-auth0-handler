@@ -1,6 +1,6 @@
 import auth0 from 'auth0-js'
 
-import hAuthStorage from './AuthStorage'
+import hAuthStorage from './src/AuthStorage'
 
 export default {
   name: 'hAuth',
