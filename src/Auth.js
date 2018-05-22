@@ -1,7 +1,7 @@
 import auth0 from 'auth0-js'
 
 import hAuthStorage from './AuthStorage'
-import hCallback from './Callback.vue'
+import hCallback from '../Callback.vue'
 
 export default {
   name: 'hAuth',
@@ -36,12 +36,19 @@ export default {
       scope: 'openid email profile'
     })
   },
+  getWebAuth() {
+    if (this.auth0.webAuth) {
+      return this.auth0.webAuth;
+    }
+    this.auth0.webAuth = this.getNewWebAuth();
+    return this.auth0.webAuth;
+  },
   login() {
-    this.auth0.webAuth.authorize()
+    this.getWebAuth().authorize()
   },
   handleAuthentication(callbackFunction) {
     let callback = callbackFunction;
-    this.auth0.webAuth.parseHash((err, authResult) => {
+    this.getWebAuth().parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
       }
@@ -67,7 +74,6 @@ export default {
   getAuthResult() {
     return this.storage.getAuthResult();
   },
-
   getUserProfile() {
     let payload = this.getAuthResult().idTokenPayload;
     let userProfile = {

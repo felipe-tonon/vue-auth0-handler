@@ -10,7 +10,8 @@
         </div>
     </div>
     <div v-else-if="!isLoggedIn">
-        <button @click="login">Login</button>
+        <!-- not logged in! :D -->
+
     </div>
     <div v-else>
         <!-- logged in! :D -->
