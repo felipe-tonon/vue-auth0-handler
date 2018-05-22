@@ -41,7 +41,7 @@ Vue.use(hAuth, {configuration : authConfig});
 ```
 
 ## 
-    Insite <script> tag:    
+    Inside <script> tag:    
 ```javascript
     import hCallback from "vue-auth0-handler/Callback.vue";
     export default {
