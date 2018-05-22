@@ -1,6 +1,7 @@
 import auth0 from 'auth0-js'
 
-import hAuthStorage from './src/AuthStorage'
+import hAuthStorage from './AuthStorage'
+import hCallback from './Callback.vue'
 
 export default {
   name: 'hAuth',
@@ -22,6 +23,7 @@ export default {
     this.auth0.webAuth = this.getNewWebAuth();
     Vue.prototype.$hAuth = this;
     Vue.hAuth = this;
+    Vue.use(hCallback);
     console.log('install2', this.auth0.webAuth);
   },
   getNewWebAuth() {
