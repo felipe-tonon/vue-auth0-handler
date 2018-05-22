@@ -1,7 +1,7 @@
 {
   "name": "vue-auth0-handler",
   "version": "1.0.2",
-  "description": "Vue2 Component to handle login/logut and authentication callbacks from Auth0",
+  "description": "Vue2 Component to handle login/logout and authentication callbacks from Auth0",
   "main": "src/Auth.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
