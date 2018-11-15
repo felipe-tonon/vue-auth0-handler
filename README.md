@@ -37,7 +37,7 @@ Vue.use(hAuth, {configuration : authConfig});
     Inside <template> tag:    
     
 ```html
-    <h-callback redirectTo="/"></h-callback>
+    <h-callback />
 ```
 
 ## 
