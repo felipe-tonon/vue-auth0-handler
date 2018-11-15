@@ -23,7 +23,7 @@ export default {
     Vue.hAuth = this;
   },
   getNewWebAuth() {
-    let environment = this.getEnvironment();
+    var environment = this.getEnvironment();
     return new auth0.WebAuth({
       domain: this.auth0Config.domain,
       clientID: this.auth0Config.clientId,
@@ -46,20 +46,26 @@ export default {
     this.auth0.webAuth = this.getNewWebAuth();
     return this.auth0.webAuth;
   },
-  login() {
+  login(redirectTo = undefined) {
+
+    if (redirectTo == undefined) {
+      this.storage.clearRedirectUrl();
+    } else {
+      this.storage.setRedirectUrl(redirectTo);
+    }
     this.getWebAuth().authorize()
   },
   handleAuthentication(callbackFunction) {
-    let callback = callbackFunction;
+    var callback = callbackFunction;
     this.getWebAuth().parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
-        this.setSession(authResult);
-      }
-      else if (err) {
-        alert(`Error: ${err.error}. Check the console for further details.`)
-      }
-      callback(err, authResult);
-    });
+      this.setSession(authResult);
+    }
+  else if (err) {
+      alert(`Error: ${err.error}. Check the console for further details.`)
+    }
+    callback(err, authResult);
+  });
   },
   setSession(authResult) {
     authResult.expiresAt = this.getExpiresAtValue(authResult.expiresIn);
@@ -78,8 +84,8 @@ export default {
     return this.storage.getAuthResult();
   },
   getUserProfile() {
-    let payload = this.getAuthResult().idTokenPayload;
-    let userProfile = {
+    var payload = this.getAuthResult().idTokenPayload;
+    var userProfile = {
       email: payload.email,
       name: payload.name,
       nickname: payload.nickname,
@@ -97,7 +103,7 @@ export default {
   isAuthenticated() {
     // Check whether the current time is past the
     // access token's expiry time
-    let authResult = this.getAuthResult();
+    var authResult = this.getAuthResult();
     return (authResult) && (new Date().getTime() < authResult.expiresAt);
   }
 }

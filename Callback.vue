@@ -19,9 +19,20 @@
 </template>
 
 <script>
+  import hAuthStorage from './src/AuthStorage'
+
   export default {
     name: 'hCallback',
-    props: ['loginEventName', 'redirectTo'],
+    props: ['loginEventName'],
+    components: {
+      hAuthStorage
+    },
+    data() {
+      return {
+        isCallback: false,
+        isLoggedIn: false
+      }
+    },
     mounted() {
       this.setFlags();
       if (this.isCallback) {
@@ -33,9 +44,6 @@
         this.isCallback = this.$route.path.includes('access_token');
         this.isLoggedIn = this.$hAuth.isAuthenticated();
       },
-      login() {
-        this.$hAuth.login();
-      },
       handleCallback(err, authResult) {
         this.isCallback = false;
         if (err) {
@@ -46,26 +54,20 @@
       },
       onSuccessHandleCallback(authResult) {
         this.isLoggedIn = true;
-        console.log('loginEventName =' + this.loginEventName);
         if (this.loginEventName) {
           this.emmitLoginEvent(this.loginEventName, authResult);
         }
-        if (this.redirectTo) {
-          this.redirectToHome();
-        }
+        this.redirect();
       },
-      redirectToHome() {
-        this.$router.push(this.redirectTo);
-        this.$router.go();
+      redirect() {
+        let redirectTo = hAuthStorage.getRedirectUrl()
+        if (!redirectTo)
+          redirectTo = '/';
+        this.$router.push(redirectTo);
+        this.$router.go(redirectTo);
       },
       emmitLoginEvent(eventName, authResult) {
         this.$emit(eventName, {authResult: authResult});
-      }
-    },
-    data() {
-      return {
-        isCallback: false,
-        isLoggedIn: false
       }
     }
   }
