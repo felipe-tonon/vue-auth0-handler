@@ -52,22 +52,6 @@ Vue.use(hAuth, {configuration : authConfig});
     }
 ```
 
-### Options
-
-Once a successful login happens, you can have your hCallback component to perform a redirection *OR* to fire an event.
-##
-Redirecting: 
-```html
-    
-    <h-callback redirectTo="your_after-login_page/"></h-callback>
-```
-##
-Firing an event:
-```html
-    // firing an event:
-    <h-callback loginEventName="logged_in" v-on:logged_in="testLoginEvent"></h-callback>
-```
-
 ### $hAuth api methods
 
 #### login()
@@ -104,4 +88,21 @@ Firing an event:
            lastName: '',
            firstName: ''
       }
+```
+
+### Options
+
+Once a successful login happens, you can have your hCallback component to perform a redirection *OR* to fire an event.
+##
+Redirecting: 
+```javascript
+    let redirectPath = 'some/vue/router-path/1';
+    // url will be called by the hCallback component
+    this.$hAuth.login(redirectPath); 
+```
+##
+Firing an event:
+```html
+    // firing an event:
+    <h-callback loginEventName="logged_in" v-on:logged_in="testLoginEvent"></h-callback>
 ```
