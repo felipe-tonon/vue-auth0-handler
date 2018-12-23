@@ -1,5 +1,5 @@
 # vue-auth0-handler
-Handles login/logout and authentication callback from Auth0 in Vue2
+Handles login/logout and authentication callback from Auth0's lock screen in Vue2
 
 ### Quick Start
 
